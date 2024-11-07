@@ -1,7 +1,7 @@
 
 import './App.css'
 import Navbar from './components/Navbar'
-import Manager from './components/manager'
+import Manager from './components/Manager'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // import Register from './components/Register'
 // import Login from './components/Login'

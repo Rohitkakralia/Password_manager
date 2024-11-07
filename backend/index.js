@@ -1,5 +1,5 @@
-import app from "./app";  // Use default import for app
-import { connectDb } from "./db";  // Named import is fine for connectDb
+import app from "./app.js";  // Use default import for app
+import { connectDb } from "./db/index.js";  // Named import is fine for connectDb
 
 connectDb()
     .then(() => {
