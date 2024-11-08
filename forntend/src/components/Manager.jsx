@@ -65,13 +65,13 @@ const Manager = () => {
 
   const handleEdit = (index) => {
     const item = list[index];
-    setValue("url", item.url);
+    setValue("fullName", item.fullName);
     setValue("username", item.username);
-    setValue("pass", item.pass);
+    setValue("userPassword", item.userPassword);
     setEditIndex(index);
   };
 
-  const seePass = (e) => {
+  const seeuserPassword = (e) => {
     e.preventDefault();
     setSee(!see);
   };
@@ -82,17 +82,18 @@ const Manager = () => {
 
   const filteredList = list.filter(
     (item) =>
-      item.url.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.username.toLowerCase().includes(searchQuery.toLowerCase())
+      item.url?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.username?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
   return (
     <>
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
         <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-fuchsia-400 opacity-20 blur-[100px]"></div>
       </div>
 
-       {/* Loader with animated line */}
-       {isLoading && (
+      {/* Loader with animated line */}
+      {isLoading && (
         <div className="fixed top-5 right-5 p-2 rounded bg-gray-800 text-white flex flex-col items-center">
           Deleting...
           <div className="mt-2 w-full h-1 bg-white relative overflow-hidden">
@@ -108,9 +109,9 @@ const Manager = () => {
               type="text"
               placeholder="Enter website url"
               className="border-2 border-black rounded-[50px] px-[10px] w-full h-[35px]"
-              {...register("url", { required: "URL is required" })}
+              {...register("fullName", { required: "URL is required" })}
             />
-            {errors.url && <p>{errors.url.message}</p>}
+            {errors.fullName && <p>{errors.fullName.message}</p>}
 
             <div className="flex my-[20px] w-full gap-[20px] md:gap-[40px] flex-col md:flex-row">
               <input
@@ -126,10 +127,16 @@ const Manager = () => {
                   type={see ? "text" : "password"}
                   placeholder="Enter password"
                   className="border-2 border-black rounded-[50px] px-[10px] h-[35px] md:w-[100%] w-full"
-                  {...register("pass", { required: "Password is required" })}
+                  {...register("userPassword", {
+                    required: "Password is required",
+                  })} // This should be "userPassword"
                 />
-                {errors.pass && <p>{errors.pass.message}</p>}
-                <button onClick={seePass} className="absolute inset-y-0 right-3 flex items-center text-sm">
+
+                {errors.userPassword && <p>{errors.userPassword.message}</p>}
+                <button
+                  onClick={seeuserPassword}
+                  className="absolute inset-y-0 right-3 flex items-center text-sm"
+                >
                   {see ? <FiEyeOff /> : <FiEye />}
                 </button>
               </div>
@@ -151,7 +158,9 @@ const Manager = () => {
             </span>
           </form>
 
-          <p className="font-bold text-[20px] mt-[30px]">Your Passwords</p>
+          <p className="font-bold text-[20px] mt-[30px]">
+            Your userPasswordwords
+          </p>
           <div className="my-4">
             <input
               type="text"
@@ -167,7 +176,7 @@ const Manager = () => {
               <p className="w-[40%] flex justify-center">Site Name</p>
               <span className="w-[60%] flex justify-evenly">
                 <p>Username</p>
-                <p>Password</p>
+                <p>userPasswordword</p>
                 <p>Actions</p>
               </span>
             </div>
@@ -177,11 +186,11 @@ const Manager = () => {
                 <li key={index}>
                   <div className="flex w-full bg-[#e1a9ec] h-full md:justify-around md:flex-row flex-col text-[12px] md:items-center ">
                     <p className="w-[40%] flex justify-center overflow-x-auto">
-                      <a href={item.url}>{item.url}</a>
+                      <a href={item.fullName}>{item.fullName}</a>
                     </p>
                     <span className="w-[60%] flex justify-evenly">
                       <p>{item.username}</p>
-                      <p>{item.pass}</p>
+                      <p>{item.userPassword}</p>
                       <span className="flex gap-4">
                         <button onClick={() => handleDelete(index)}>
                           <lord-icon

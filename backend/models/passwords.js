@@ -1,16 +1,10 @@
 import mongoose from "mongoose";
 
 const passwordSchema = new mongoose.Schema({
-    name: {
-        type: String
-    },
-    username: {
-        type: String,
-        required: true
-    },
-    userPassword: {
-        type: String
-    }
+   fullName: String,
+   username: String,
+   userPassword: String,
+
 });
 
 const Password = mongoose.model('Password', passwordSchema);

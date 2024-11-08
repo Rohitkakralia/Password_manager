@@ -1,6 +1,5 @@
 import express from 'express';
-import Password from './models/passwords.js';
-// Ensure Password is correctly imported
+import Password from './models/passwords.js'; // Ensure Password is correctly imported
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
@@ -11,14 +10,14 @@ app.use(express.json()); // Middleware to parse incoming JSON requests
 
 app.post("/", async (req, res) => {
     try {
-        const { name, username, userPassword } = req.body; // Rename to avoid keyword conflict
+        const { fullName, username, userPassword } = req.body; // Rename to avoid keyword conflict
 
         // Log incoming data
-        console.log('Received data:', { name, username, userPassword });
+        console.log('Received data:', { fullName, username, userPassword });
 
         // Creating the password entry
         try {
-            const createPass = await Password.create({ name, username, userPassword });
+            const createPass = await Password.create({ fullName, username, userPassword });
         console.log("Created entry:", createPass); 
         } catch (error) {
             console.log(error);
